@@ -181,13 +181,19 @@ L.Control.EasyPrint = L.Control.extend({
 
   _printOpertion: function (sizemode) {
     var plugin = this;
-    var widthForExport = this.mapContainer.style.width
+    var widthForExport = this.mapContainer.style.width;
+    var heightForExport = this.mapContainer.style.height || plugin.mapContainer.style.height;
+    
     if (this.originalState.widthWasAuto && sizemode === 'CurrentSize' || this.originalState.widthWasPercentage && sizemode === 'CurrentSize') {
       widthForExport = this.originalState.mapWidth
     }
+    if (!heightForExport || !heightForExport.length || heightForExport.indexOf('%') >= 0 ) {
+        heightForExport = this.mapContainer.offsetHeight;
+    }
+
     domtoimage.toPng(plugin.mapContainer, {
         width: parseInt(widthForExport),
-        height: parseInt(plugin.mapContainer.style.height.replace('px'))
+        height: parseInt(heightForExport)
       })
       .then(function (dataUrl) {
           var blob = plugin._dataURItoBlob(dataUrl);
