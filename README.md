@@ -13,7 +13,7 @@ Check out the [demo](http://rowanwins.github.com/leaflet-easyPrint/).
 ### Download
 You can either download this repo directly or install via NPM.
 ````
-npm install leaflet-easyprint
+npm install https://github.com/skol-pro/leaflet-easyPrint
 ````
 
 ### Options
